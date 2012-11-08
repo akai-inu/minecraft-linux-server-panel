@@ -1,5 +1,5 @@
 <?php
-$filepath = '/var/www/minecraftsv/mcsv.sh ';
+$filepath = './.mcsv.sh ';
 exec($filepath.$_POST["command"], $arr);
 foreach($arr as $a) {
 	echo "$a\n";

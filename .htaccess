@@ -1,0 +1,14 @@
+# Please set path to .htpasswd
+AuthUserFile /path/to/.htpasswd
+
+<Files ~ "^\.*">
+deny from all
+</Files>
+Options -Indexes
+AuthGroupFile /dev/null
+AuthName "Please enter your ID and password"
+AuthType Basic
+require valid-user 
+DirectoryIndex index.html       
+order deny,allow
+

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Minecraft Linux Server Panel</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="text/javascript"></script>
+	<script src="mcpanel.js" type="text/javascript"></script>
+</head>
+<body>
+
+<h1>Minecraft Linux Server Panel</h1>
+
+<div style="width:500px;margin:15px;color:#FFF;background:#000;padding:5px;border:3px ridge #FFF;">サーバ状態 : 
+<span id="status"></span>(@<span id="statustime"></span>)
+<pre id="warning" style="font-weight:bold;text-align:center;font-size:150%;color:#FF5555;"></pre></div>
+<input type="button" id="button_start" value="サーバを起動する" disabled="true" />
+<input type="button" id="button_stop" value="サーバを終了する" disabled="true" />
+<input type="button" id="button_restart" value="サーバを再起動する" disabled="true" />
+<input type="button" id="button_terminate" value="サーバを強制終了する" />
+<br /><br />
+<div style="width:500px;border:3px ridge #FFF;margin:15px;padding:5px;color:#FFF;background:#000;">
+サーバ応答 : 
+<pre id="response"></pre>
+</div>
+</body>
+</html>

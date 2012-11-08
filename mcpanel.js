@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8" />
-	<title>Minecraft Web Scriptor</title>
-	<script src="/jquery-1.8.2.min.js" type="text/javascript"></script>
+	var execpath = "./.exec.php";
 
-	<script type="text/javascript">
 	function setButtonAndStatus(res) {
 		var arr = res.split("\n");
 		// 最後は空行なので-2
@@ -23,7 +17,7 @@
 		}
 	}
 	function GetServerStatus() {
-		$.post("./exec.php", { command: "status" }, function(res) {
+		$.post(execpath, { command: "status" }, function(res) {
 			$("#statustime").text(new Date($.now()).toLocaleString());
 			setButtonAndStatus(res);
 		}, "text");
@@ -45,7 +39,7 @@
 			$("#button_start").attr('disabled', 'true');
 			$("#warning").text("現在サーバを起動しています...");
 			ajaxWaiting = true;
-			$.post("exec.php", { command: "start" }, function(res) {
+			$.post(execpath, { command: "start" }, function(res) {
 				$("#response").append(res);
 				setButtonAndStatus(res);
 				$("#warning").text("");
@@ -57,7 +51,7 @@
 			$("#button_restart").attr('disabled', 'true');
 			$("#warning").text("現在サーバを終了しています...");
 			ajaxWaiting = true;
-			$.post("exec.php", { command: "stop" }, function(res) {
+			$.post(execpath, { command: "stop" }, function(res) {
 				$("#response").append(res);
 				setButtonAndStatus(res);
 				$("#warning").text("");
@@ -69,10 +63,10 @@
 			$("#button_restart").attr('disabled', 'true');
 			$("#warning").text("現在サーバを終了しています...");
 			ajaxWaiting = true;
-			$.post("exec.php", { command: "stop" }, function(res) {
+			$.post(execpath, { command: "stop" }, function(res) {
 				$("#response").append(res);
 				$("#warning").text("現在サーバを起動しています...");
-				$.post("exec.php", { command: "start" }, function(res) {
+				$.post(execpath, { command: "start" }, function(res) {
 					$("#response").append(res);
 					setButtonAndStatus(res);
 					$("#warning").text("");
@@ -81,29 +75,9 @@
 			});
 		});
 		$("#button_terminate").click(function(e) {
-			$.post("exec.php", { command: "terminate" }, function(res) {
+			$.post(execpath, { command: "terminate" }, function(res) {
 				$("#response").append(res);
 				setButtonAndStatus(res);
 			});
 		});
 	});
-	</script>
-</head>
-<body>
-
-<h1>Minecraft Web Scriptor</h1>
-
-<div style="width:500px;margin:15px;color:#FFF;background:#000;padding:5px;border:3px ridge #FFF;">サーバ状態 : 
-<span id="status"></span>(@<span id="statustime"></span>)
-<pre id="warning" style="font-weight:bold;text-align:center;font-size:150%;color:#FF5555;"></pre></div>
-<input type="button" id="button_start" value="サーバを起動する" disabled="true" />
-<input type="button" id="button_stop" value="サーバを終了する" disabled="true" />
-<input type="button" id="button_restart" value="サーバを再起動する" disabled="true" />
-<input type="button" id="button_terminate" value="サーバを強制終了する" />
-<br /><br />
-<div style="width:500px;border:3px ridge #FFF;margin:15px;padding:5px;color:#FFF;background:#000;">
-サーバ応答 : 
-<pre id="response"></pre>
-</div>
-</body>
-</html>
