@@ -2,7 +2,8 @@
 RAM_MIN=64  # Minimum use of Memory
 RAM_MAX=512 # Maximum use of Memory
 SCREEN_NAME=minecraft_server_web
-cd "${0%/*}"
+MINECRAFT_PATH=`cat ./.settings`
+cd ${MINECRAFT_PATH}
 
 check_server()
 {
